@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import UserImage from "../assets/images/user.svg";
+import UserImage from "../../assets/images/user.svg";
+import './styles.scss';
 
 export const Profile = (): JSX.Element => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -17,9 +18,14 @@ export const Profile = (): JSX.Element => {
   console.log("isAuthenticated", isAuthenticated);
 
   return (
-    <section className="esh-identity-section u-cursor-pointer pt-2 pb-2">
-        <div className="esh-identity-name">{user?.email}</div>
-        <img className="esh-identity-image ml-2" src={UserImage} alt="Logo"/>
-    </section>
+    <>
+    {
+      isAuthenticated &&
+      <section className="esh-identity-section u-cursor-pointer pt-2 pb-2">
+          <div className="esh-identity-name">{user?.email}</div>
+          <img className="esh-identity-image ml-2" src={UserImage} alt="Logo"/>
+      </section>
+    }
+    </>
   );
 };

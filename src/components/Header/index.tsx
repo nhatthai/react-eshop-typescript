@@ -1,7 +1,8 @@
 import React from 'react';
-import background from '../assets/images/header.jpg';
-import logo_color from '../assets/images/logo_color.svg';
+import background from '../../assets/images/header.jpg';
+import logo_color from '../../assets/images/logo_color.svg';
 import { Identity } from '../Indentity';
+import './styles.scss';
 
 export const Header = (): JSX.Element => {
   return (
