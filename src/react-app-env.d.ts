@@ -3,7 +3,9 @@ declare global {
     namespace NodeJS {
       interface ProcessEnv {
         REACT_APP_AUTH0_DOMAIN: string;
-        REACT_APP_AUTH0_CLIENTID: string
+        REACT_APP_AUTH0_CLIENTID: string;
+        REACT_APP_CATALOG_API: string;
+        REACT_APP_BASKET_API: string;
         NODE_ENV: 'development' | 'production';
       }
     }
