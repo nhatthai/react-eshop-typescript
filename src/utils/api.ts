@@ -1,8 +1,6 @@
-const baseUrl = `http://localhost:5089`;
-const catalogAPI = baseUrl + '/Catalog/items?pageSize=12&pageIndex=0';
-
-export const catalogService = {
-    getAll
+export const apiService = {
+    getAll,
+    post
 };
 
 function fetchData(apiUrl: string, method: string, jsonData: any) {
@@ -19,6 +17,10 @@ function fetchData(apiUrl: string, method: string, jsonData: any) {
     });
 }
 
-function getAll() {
-    return fetchData(catalogAPI, 'GET', null);
+function getAll(api: string) {
+    return fetchData(api, 'GET', null);
+}
+
+function post(api: string, data: any) {
+    return fetchData(api, 'POST', data);
 }

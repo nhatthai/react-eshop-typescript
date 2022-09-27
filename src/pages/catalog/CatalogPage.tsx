@@ -3,21 +3,25 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import add_image from '../../assets/images/add.svg';
 import { ICatalogItem } from '../../interfaces/ICatalogItem';
-import { catalogService } from '../../services';
+import { apiService } from '../../utils/api';
+import { IBasket, IBasketItem } from '../../interfaces';
 import './styles.scss';
 
 export function CatalogPage() {
   const [catalogs, setCatalogs] = useState<ICatalogItem[]>([]);
+  const [basketItems, setBasketItems] = useState<IBasketItem[]>([]);
   const [error, setError] = useState();
   const [loading, setLoading] = useState<boolean>();
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     loadCatalogs();
   }, []);
 
   function loadCatalogs() {
-    catalogService.getAll()
+    const catalogAPI = process.env.REACT_APP_CATALOG_API + '/Catalog/items?pageSize=12&pageIndex=0';
+
+    apiService.getAll(catalogAPI)
       .then((data) => {
         setCatalogs(data.data);
       })
@@ -29,12 +33,67 @@ export function CatalogPage() {
       });
   }
 
-  function addToCart(item: ICatalogItem) 
-  {
-    if(isAuthenticated) {
-      console.log("add cart", item);
+  function addToCart(item: ICatalogItem) {
+    if(!isAuthenticated) {
+      return;
     }
+
+    addItemToBasket(item);
   }
+
+  function addItemToBasket(item: ICatalogItem) {
+    const basketAPI = process.env.REACT_APP_BASKET_API + "/api/v1/basket/";
+    const email = user?.email;
+
+    if (!email) {
+      return;
+    }
+
+    let basket: IBasket = {
+      buyerId: '',
+      items: []
+    };
+    
+    apiService.getAll(basketAPI + email)
+      .then((data) => {
+        setBasketItems(data.items);
+
+        let basketItem = basketItems.find(value => value.productId === item.id);
+        
+        if (basketItem) {
+          basketItem.quantity++;
+        } else {
+          let buyItem: IBasketItem = {
+            id: item.id.toString(),
+            productId: item.id,
+            productName: item.name,
+            unitPrice: item.price,
+            oldUnitPrice: item.price,
+            quantity: 1,
+            pictureUrl: ""
+          };
+          basketItems.push(buyItem);
+        }
+        
+        basket.buyerId = email;
+        basket.items = basketItems;
+
+        postBasketAPI(basket);
+      })
+      .catch((error) => {
+        
+      })
+      .finally(() => {
+        
+      });
+  }
+
+  function postBasketAPI(basket: IBasket) {
+    const url = process.env.REACT_APP_BASKET_API + '/api/v1/basket/';
+    console.log("SET BASKET", basket);
+    
+    return apiService.post(url, JSON.stringify(basket));
+  } 
 
   return (
     <>
@@ -75,7 +134,7 @@ export function CatalogPage() {
 
     {
       error && (
-        <div>Error: something wrong </div>
+        <div className="container">Error: something wrong </div>
       )
     }
     </>
