@@ -7,9 +7,9 @@ import { CatalogPage } from './pages/';
 function App() {
   return (
     <div>
-        <Header />
-          <CatalogPage />
-        <Footer />
+      <Header />
+      <CatalogPage />
+      <Footer />
     </div>
   );
 }
