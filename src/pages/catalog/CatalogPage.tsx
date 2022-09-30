@@ -53,13 +53,13 @@ export function CatalogPage() {
       buyerId: '',
       items: []
     };
-    
+
     apiService.getAll(basketAPI + email)
       .then((data) => {
         setBasketItems(data.items);
 
         let basketItem = basketItems.find(value => value.productId === item.id);
-        
+
         if (basketItem) {
           basketItem.quantity++;
         } else {
@@ -74,26 +74,26 @@ export function CatalogPage() {
           };
           basketItems.push(buyItem);
         }
-        
+
         basket.buyerId = email;
         basket.items = basketItems;
 
         postBasketAPI(basket);
       })
       .catch((error) => {
-        
+
       })
       .finally(() => {
-        
+
       });
   }
 
   function postBasketAPI(basket: IBasket) {
     const url = process.env.REACT_APP_BASKET_API + '/api/v1/basket/';
     console.log("SET BASKET", basket);
-    
+
     return apiService.post(url, JSON.stringify(basket));
-  } 
+  }
 
   return (
     <>
@@ -105,7 +105,7 @@ export function CatalogPage() {
       <div className="esh-catalog-items row">
         { catalogs.length > 0 && catalogs.map((item, index) => (
           <div key={index} className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className={"esh-catalog-item + (!isAuthenticated? is-disabled)"} onClick={() => addToCart(item)} >  
+            <div className={"esh-catalog-item + (!isAuthenticated? is-disabled)"} onClick={() => addToCart(item)} >
               <div className="esh-catalog-thumbnail-wrapper">
                   <div className="esh-catalog-thumbnail-icon d-flex justify-content-center">
                     <img className="esh-catalog-thumbnail-icon-svg" src={add_image} alt="add"/>
