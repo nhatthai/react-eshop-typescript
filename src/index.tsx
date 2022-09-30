@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
+import { CatalogPage, OrderPage } from './pages';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +19,14 @@ root.render(
     domain={process.env.REACT_APP_AUTH0_DOMAIN}
     clientId={process.env.REACT_APP_AUTH0_CLIENTID}
     redirectUri={window.location.origin}>
-    <App />
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<CatalogPage />} />
+          </Route>
+          <Route path="/orders" element={<OrderPage />} />
+        </Routes>
+    </BrowserRouter>
   </Auth0Provider>
 );
 
