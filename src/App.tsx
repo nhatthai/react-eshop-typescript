@@ -13,8 +13,8 @@ import {
 function App() {
   return (
     <div>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<CatalogPage />}>
             <Route index element={<CatalogPage />} />
@@ -22,8 +22,8 @@ function App() {
           <Route path="/orders" element={<OrderPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </div>
   );
 }
