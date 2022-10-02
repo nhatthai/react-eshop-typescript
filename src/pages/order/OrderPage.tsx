@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Footer } from "../../components/Footer";
-import { Header } from "../../components/Header";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 import { apiService } from '../../utils/api';
@@ -35,7 +33,6 @@ export function OrderPage() {
 
   return (
     <>
-      <Header />
       <div className="esh-orders">
         <div className="container">
           <h1 className="mb-4 mt-5">Order List</h1>
@@ -85,7 +82,6 @@ export function OrderPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
