@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./styles.scss";
 import { apiService } from '../../utils/api';
-import { IOrder } from '../../interfaces/IOrder';
+import { IOrder } from '@interfaces/IOrder';
 
 export function OrderPage() {
   const [orders, setOrders] = useState<IOrder[]>([]);
