@@ -1,10 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import React from 'react';
 import { useState, useEffect } from 'react';
-import add_image from '../../assets/images/add.svg';
-import { ICatalogItem } from '../../interfaces/ICatalogItem';
 import { apiService } from '../../utils/api';
-import { IBasket, IBasketItem } from '../../interfaces';
+import add_image from '../../assets/images/add.svg';
+import { ICatalogItem } from '@interfaces/ICatalogItem';
+import { IBasket,  } from '@interfaces/IBasket';
+import { IBasketItem } from '@interfaces/IBasketItem';
 import './styles.scss';
 
 export function CatalogPage() {

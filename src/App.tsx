@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.scss';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -8,6 +7,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { OrderDetailPage } from './pages/order/order-detail/OrderDetailPage';
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
             <Route index element={<CatalogPage />} />
           </Route>
           <Route path="/orders" element={<OrderPage />} />
+          <Route path="/orders/:id" element={<OrderDetailPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
         <Footer />
