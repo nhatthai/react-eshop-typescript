@@ -2,9 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useState, useEffect } from 'react';
 import { apiService } from '../../utils/api';
 import add_image from '../../assets/images/add.svg';
-import { ICatalogItem } from '@interfaces/ICatalogItem';
-import { IBasket,  } from '@interfaces/IBasket';
-import { IBasketItem } from '@interfaces/IBasketItem';
+import { ICatalogItem, IBasketItem, IBasket } from '@interfaces/index';
 import './styles.scss';
 
 export function CatalogPage() {

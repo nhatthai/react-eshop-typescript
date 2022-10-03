@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { apiService } from '../../../utils/api';
 import { IOrderDetail } from '@interfaces/IOrderDetail';
-import "./styles.scss";
 import { useParams } from "react-router-dom";
-
+import "./styles.scss";
 
 export function OrderDetailPage() {
   const [orderDetail, setOrderDetail] = useState<IOrderDetail>();
