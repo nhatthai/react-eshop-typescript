@@ -1,4 +1,3 @@
-import React from "react";
 import UserImage from "../../assets/images/user.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -7,7 +6,7 @@ export const LoginButton = (): JSX.Element =>  {
 
   return (
     <div>
-    { 
+    {
       !isAuthenticated && <div className="u-cursor-pointer pt-2 pb-2">
       <div
           className="esh-identity-name d-flex align-items-center"

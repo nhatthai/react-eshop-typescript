@@ -1,4 +1,3 @@
-import React from 'react';
 import background from '../../assets/images/header.jpg';
 import logo_color from '../../assets/images/logo_color.svg';
 import { Identity } from '../Indentity';
